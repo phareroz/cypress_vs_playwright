@@ -1,0 +1,26 @@
+image: registry.gitlab.tech.orange/qalabs/samples/cypress_build_docker:main
+
+stages:
+  - test
+
+test:
+   stage : test
+   allow_failure: true
+   parallel :
+     matrix:
+       - BROWSER:
+         - chrome
+         - firefox
+         - edge
+   artifacts:
+     when: always
+     paths:
+       - screenshots/
+     name: "$CI_JOB_STARTED_AT"
+   script:
+     - cp -rf $PWD/cypress /opt/app
+     - cp -f $PWD/cypress.config.js /opt/app
+     - cd /opt/app
+     - npx cypress run --headless --e2e --browser $BROWSER
+   after_script:
+     - mv /opt/app/cypress/screenshots .

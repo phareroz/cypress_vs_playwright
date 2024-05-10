@@ -1,0 +1,10 @@
+include:
+  - component: gitlab.tech.orange/to-be-continuous/docker/gitlab-ci-docker@5.10.1
+    inputs:
+      prod-publish-strategy: "auto"
+
+stages:
+      - build
+      - package-build
+      - package-test
+      - publish

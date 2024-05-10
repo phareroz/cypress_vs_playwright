@@ -1,0 +1,1 @@
+empty file just to force the screenshot folder to exist

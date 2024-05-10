@@ -1,0 +1,11 @@
+ARG NODE_VERSION='20.12.2'
+ARG CYPRESS_VERSION='13.8.0'
+ARG CHROME_VERSION='124.0.6367.60-1'
+ARG EDGE_VERSION='124.0.2478.51-1'
+ARG FIREFOX_VERSION='125.0.1'
+
+FROM cypress/factory:3.5.4
+
+COPY . /opt/app
+WORKDIR /opt/app
+RUN npm install --save-dev cypress@13.8.0
